@@ -40,4 +40,8 @@ Sticky.winnr = function(self)
   return vim.fn.bufwinnr(self.bufnr)
 end
 
+Sticky.winid = function(self)
+  return vim.fn.win_getid(self:winnr())
+end
+
 return Sticky

@@ -16,13 +16,14 @@ Sticky.setup = function(bufnr)
     vim.fn.execute(string.format('e %s/index.md', sticky_dir_path))
     vim.api.nvim_create_augroup('sticky-nvim', { clear = true })
     vim.api.nvim_create_autocmd({ 'InsertLeave' }, { group = 'sticky-nvim', buffer = vim.g.sticky_nvim_bufnr, callback = function() vim.fn.execute('write') end})
+    vim.wo.wrap = false
   end)
 end
 
 Sticky.attach = function(self)
   vim.api.nvim_open_win(self.bufnr, true, {
     relative = "editor", anchor = "NE",
-    width = math.ceil(vim.opt.columns:get()/8), height = math.ceil(vim.opt.lines:get()/8),
+    width = math.ceil(vim.opt.columns:get()/4), height = math.ceil(vim.opt.lines:get()/4),
     row = 1, col = vim.opt.columns:get() - 2,
     style = "minimal", border = "rounded"
   })

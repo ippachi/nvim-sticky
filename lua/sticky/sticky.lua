@@ -15,7 +15,7 @@ Sticky.setup = function(bufnr)
   vim.api.nvim_buf_call(bufnr, function()
     vim.fn.execute(string.format('e %s/index.md', sticky_dir_path))
     vim.api.nvim_create_augroup('sticky-nvim', { clear = true })
-    vim.api.nvim_create_autocmd({ 'InsertLeave' }, { group = 'sticky-nvim', buffer = vim.g.sticky_nvim_bufnr, callback = function() vim.fn.execute('write') end})
+    vim.api.nvim_create_autocmd({ 'InsertLeave' }, { group = 'sticky-nvim', buffer = bufnr, callback = function() vim.fn.execute('write') end})
     vim.wo.wrap = false
   end)
 end
